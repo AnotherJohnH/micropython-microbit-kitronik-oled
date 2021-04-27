@@ -13,6 +13,8 @@ Text is rendered using the internal microbit fonts.
 
 The library is distributed in different files to allow importing only the required functions in order to reduce memory consumption.
 
+The main editor of use will be https://python.microbit.org/v/2.0  for any additional help wih microPython visit: https://microbit-micropython.readthedocs.io/en/v1.0.1/
+
 .. contents::
 
 .. section-numbering::
@@ -34,11 +36,31 @@ Preparation and displaying of a bitmap image
 1. Create a bitmap with an image editor with only 2 bits per pixel (black and white) 
 2. Use the LCDAssistant (http://en.radzio.dxp.pl/bitmap_converter/) to generate the hex data. 
 3. Copy the hex data into the bitmap_converter.py file in the sample_images folder and run it on a computer with Python.
-4. Flash a completely empty file from mu.
-5. Copy the generated file to the micro:bit using the file transfer function in mu
+4. Flash a completely empty file from the editor.
+5. Copy the generated file to the micro:bit using the file transfer function in editor
 6. Create a main.py file, import sdd1306_bitmap and use the function show_bitmap to display the file
-7. Move the files main.py, sdd1306.py and sdd1306_bitmap.py to the micro:bit with the file transfer function in mu
+7. Move the files main.py, sdd1306.py and sdd1306_bitmap.py to the micro:bit with the file transfer function in editor
 8. Reset the micro:bit or press CTRL+D in the Repl.
+
+
+How to import library files
+===========================
+
+Once a new project has been created, use the following steps to add the required library files
+1. Click on the "Load/Save" icon    
+.. image:: https://KitronikLtd.github.io/micropython-microbit-kitronik-oled/assets/python-add-icon.png
+      :width: 100%
+      :align: center
+2. On the new window that has appeared. At the bottom under the headering Project Files, click on "Show Files"
+.. image:: https://KitronikLtd.github.io/micropython-microbit-kitronik-oled/assets/project-files.png
+      :width: 100%
+      :align: center
+3. A list of the current files within the project will appear on a list.  To add more files click on the "Add file" button
+4. Find the require files that want to be added to the porject, select them and click on "Open" from the window
+5. Once complete, close the "Load/Save" window with the 'X' in the top corner 
+.. image:: https://KitronikLtd.github.io/micropython-microbit-kitronik-oled/assets/python-add-files.png
+      :width: 100%
+      :align: center
 
 
 Library usage
