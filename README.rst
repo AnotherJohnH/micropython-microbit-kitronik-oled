@@ -48,7 +48,7 @@ How to import library files
 
 Once a new project has been created, use the following steps to add the required library files
 1. Click on the "Load/Save" icon    
-.. image:: https://KitronikLtd.github.io/micropython-microbit-kitronik-oled/assets/python-add-icon.png
+.. image:: https://KitronikLtd.github.io/micropython-microbit-kitronik-oled/assets/python-add-icon.PNG
       :width: 100%
       :align: center
 2. On the new window that has appeared. At the bottom under the headering Project Files, click on "Show Files"
