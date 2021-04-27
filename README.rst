@@ -1,9 +1,11 @@
-Basic micropython library to control the OLED SSD1306 128x64 I2C with a micro:bit
-#################################################################################
+Basic micropython library to control the Kitronik :VIEW 128x64 Graphical Display for BBC micro:bit.
+###################################################################################################
 
-This library allows the micro:bit to control the typical low cost 0,96" OLED display sold in Amazon and eBay connected to the default I2C pins of the micro:bit. Some sort of breakout is required. Note that the Kitronik breakout does not have pre-soldered the I2C pins and you will need to attach some headers to access the I2C pins.
+This library allows to code the Kitronik :VIEW 128x64 Display using python language with the micro:bit. 
 
-You should connect the device’s SCL pin to micro:bit pin 19, and the device’s SDA pin to micro:bit pin 20. You also must connect the device’s ground to the micro:bit ground (pin GND). 
+The display used has a SSD1306 driver with a resolution 128x64. The driver is controlled over I2C from the BBC micro:bit. Using the edge connector to plug the BBC micro:bit in means that no extra jumper cables or soldering is not required to connect to the display.
+
+To power the :VIEW 128x64 can be done from powering a microUSB cable into the micro:bit and this will power the display.  The alternatives are to connect 3V onto the edge pads via croc clips or plug the :VIEW 128x64 into another accessory board.
 
 Due to the low memory of the micro:bit, all functions except for show_bitmap, work in zoom mode, so the effective screen resolution is 64x32 dots of 4x4 pixels of size.
 
@@ -38,9 +40,6 @@ Preparation and displaying of a bitmap image
 7. Move the files main.py, sdd1306.py and sdd1306_bitmap.py to the micro:bit with the file transfer function in mu
 8. Reset the micro:bit or press CTRL+D in the Repl.
 
-   .. image:: https://cdn.rawgit.com/fizban99/microbit_ssd1306/7f60064d/microbit_with_logo.jpg
-      :width: 100%
-      :align: center
 
 Library usage
 =============
