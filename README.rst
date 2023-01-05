@@ -69,7 +69,7 @@ Once a new project has been created, use the following steps to add the required
 Library usage
 =============
 
-ssd1306(scale = 1)
+ssd1306(zoom = 0)
 +++++++++++++++++++++++
 
 This will construct an ssd1306 object upon which the methods below can be called.
@@ -80,7 +80,7 @@ This will construct an ssd1306 object upon which the methods below can be called
 
    screen = ssd1306.ssd1306()
 
-clear(colour = ssd1306.BLACK)
+clear(colour = 0)
 +++++++++++++++++++++++
 
 This method will make sure that the display is blank before rendering. 
@@ -106,7 +106,7 @@ Displays on the OLED screen the image stored in the file *filename*. The image h
    clear_oled()
    show_bitmap("microbit_logo")
 
-blit(x, y, image, update = False)
+blit(x, y, image)
 ++++++++++++++++++++++++++++++++++
 
 Displays on the screen the image string *image*. A '1' in the image string sets a pixel on and a ':' starts a new row of pixels,
@@ -121,7 +121,7 @@ any other character sets a pixel of. The arguments *x* and *y* specify the top l
    screen.blit(10, 10, '00100:00100:11111:00100:00100')
    screen.refresh()
 
-point(x, y, color, update = False)
+point(x, y, colour = 1, update = False)
 ++++++++++++++++++++++++++++++++++
 
 Paints the pixel at position x, y (of a 64x32 coordinate system) with the corresponding color (0 dark or 1 lighted). 
@@ -133,8 +133,8 @@ If the optional parameter **update** is set to False the screen will not be refr
 
    screen = ssd1306.ssd1306()
    screen.clear()
-   screen.point(10, 10, 1)
-   screen.point(20, 20, 1)
+   screen.point(10, 10)
+   screen.point(20, 20)
    screen.refresh()
 
 getPixel(x, y)
