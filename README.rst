@@ -3,11 +3,14 @@ Basic micropython library to control the Kitronik :VIEW 128x64 Graphical Display
 
 This library allows to code the Kitronik :VIEW 128x64 Display using python language with the micro:bit. 
 
-The display used has a SSD1306 driver with a resolution 128x64. The driver is controlled over I2C from the BBC micro:bit. Using the edge connector to plug the BBC micro:bit in means that no extra jumper cables or soldering is not required to connect to the display.
+The display used has a SSD1306 driver with a resolution 128x64. The driver is controlled over I2C from the BBC micro:bit. Using the
+edge connector to plug the BBC micro:bit in means that no extra jumper cables or soldering is not required to connect to the display.
 
-To power the :VIEW 128x64 can be done from powering a microUSB cable into the micro:bit and this will power the display.  The alternatives are to connect 3V onto the edge pads via croc clips or plug the :VIEW 128x64 into another accessory board.
+To power the :VIEW 128x64 can be done from powering a microUSB cable into the micro:bit and this will power the display. The alternatives
+are to connect 3V onto the edge pads via croc clips or plug the :VIEW 128x64 into another accessory board.
 
-Due to the low memory of the micro:bit, all functions except for show_bitmap, work in zoom mode, so the effective screen resolution is 64x32 dots of 4x4 pixels of size.
+Due to the low memory of the micro:bit, all functions except for show_bitmap, work in zoom mode, so the effective screen resolution
+is 64x32 dots of 4x4 pixels of size.
 
 Text is rendered using the internal microbit fonts.
 
@@ -66,24 +69,31 @@ Once a new project has been created, use the following steps to add the required
 Library usage
 =============
 
-
-initialize()
+ssd1306(scale = 1)
 +++++++++++++++++++++++
 
+This will construct an ssd1306 object upon which the methods below can be called.
 
-You have to use this instruction before using the display. This puts the display in its reset status.
+.. code-block:: python
 
+   import ssd1306
 
-clear_oled()
+   screen = ssd1306.ssd1306()
+
+clear(colour = ssd1306.BLACK)
 +++++++++++++++++++++++
 
+This method will make sure that the display is blank before rendering. 
 
-You will typically use this function after initialize(), in order to make sure that the display is blank at the beginning. 
+.. code-block:: python
 
+   import ssd1306
+
+   screen = ssd1306.ssd1306()
+   screen.clear()
 
 show_bitmap(filename)
 +++++++++++++++++++++++
-
 
 Displays on the OLED screen the image stored in the file *filename*. The image has to be encode as described in the previous section.
 
@@ -96,39 +106,49 @@ Displays on the OLED screen the image stored in the file *filename*. The image h
    clear_oled()
    show_bitmap("microbit_logo")
 
-set_px(x, y, color, draw=1)
-+++++++++++++++++++++++++++++
+blit(x, y, image, update = False)
+++++++++++++++++++++++++++++++++++
 
-
-Paints the pixel at position x, y (of a 64x32 coordinate system) with the corresponding color (0 dark or 1 lighted). 
-If the optional parameter **draw** is set to 0 the screen will not be refreshed and **draw_screen()** needs to be called at a later stage, since multiple screen refreshes can be time consuming. This allows setting different pixels in the buffer without refreshing the screen, and finally refresh the display with the content of the buffer.
+Displays on the screen the image string *image*. A '1' in the image string sets a pixel on and a ':' starts a new row of pixels,
+any other character sets a pixel of. The arguments *x* and *y* specify the top left corner where the image will be rendered.
 
 .. code-block:: python
 
-   from ssd1306_px import set_px
-   from ssd1306 import draw_screen, initialize, clear_oled
-   
-   initialize()
-   clear_oled()
-   set_px(10,10,1)
-   set_px(20,20,0,0)
-   draw_screen()
+   import ssd1306
 
+   screen = ssd1306.ssd1306()
+   screen.clear()
+   screen.blit(10, 10, '00100:00100:11111:00100:00100')
+   screen.refresh()
 
-get_px(x, y)
+point(x, y, color, update = False)
+++++++++++++++++++++++++++++++++++
+
+Paints the pixel at position x, y (of a 64x32 coordinate system) with the corresponding color (0 dark or 1 lighted). 
+If the optional parameter **update** is set to False the screen will not be refreshed and **draw_screen()** needs to be called at a later stage, since multiple screen refreshes can be time consuming. This allows setting different pixels in the buffer without refreshing the screen, and finally refresh the display with the content of the buffer.
+
+.. code-block:: python
+
+   import ssd1306
+
+   screen = ssd1306.ssd1306()
+   screen.clear()
+   screen.point(10, 10, 1)
+   screen.point(20, 20, 1)
+   screen.refresh()
+
+getPixel(x, y)
 ++++++++++++
-
 
 Returns the color of the given pixel (0 dark 1 lighted)
 
 .. code-block:: python
 
-   from ssd1306 import initialize, clear_oled
-   from ssd1306_px import get_px
-   
-   initialize()
-   clear_oled()
-   color=get_px(10,10)
+   import ssd1306
+
+   screen = ssd1306.ssd1306()
+   screen.clear()
+   color = screen.getPixel(10, 10)
 
 
 add_text(x, y, text, draw=1)
